@@ -1,69 +1,57 @@
 # nimdot_env
 
-A minimal `.env` file loader for Nim. Load environment variables from a `.env` file into your application with a simple API.
+`.env` file loader for nim. reads a file, loads variables. that's all.
 
-## Installation
+---
 
-```bash
+## install
+
+```sh
 nimble install nimdot_env
 ```
 
-## Usage
+---
+
+## usage
 
 ```nim
-import nimdot_env/nimdot_env
+import nimdot_env
 
-loadEnv()
+loadEnv()  # loads .env from current directory
 
-echo getEnv("DB_HOST")
-echo getEnvInt("DB_PORT")
-echo getEnvBool("DEBUG")
+echo getEnv("MY_VAR")
 ```
 
-## API
+your `.env` file:
 
-### `loadEnv(path: string = ".env")`
-
-Reads the given file and loads all key-value pairs into memory. Lines starting with `#` and empty lines are ignored.
-
-```nim
-loadEnv()           # loads .env from current directory
-loadEnv("prod.env") # loads a custom file
-```
-
-### `getEnv(key: string, default: string = ""): string`
-
-Returns the value for the given key. If the key does not exist, returns the default value.
-
-```nim
-let host = getEnv("DB_HOST", "localhost")
-```
-
-### `getEnvInt(key: string, default: int = 0): int`
-
-Returns the value as an integer.
-
-```nim
-let port = getEnvInt("DB_PORT", 5432)
-```
-
-### `getEnvBool(key: string, default: bool = false): bool`
-
-Returns the value as a boolean. Accepts `"true"` as `true`, everything else as `false`.
-
-```nim
-let debug = getEnvBool("DEBUG", false)
-```
-
-## .env File Format
-
-```env
-# Database
+```sh
 DB_HOST=localhost
 DB_PORT=5432
-DEBUG=true
+SECRET_KEY=whatever
 ```
 
-## License
+---
 
-MIT
+## structure
+
+```
+nimdot_env/
+├── src/nimdot_env/
+├── tests/
+├── nimdot_env.nimble
+└── LICENSE
+```
+
+---
+
+## why
+
+because hardcoding secrets is bad.  
+because os environment variables shouldn't require a framework.  
+one function. one file. done.
+
+---
+
+## license
+
+MIT.
