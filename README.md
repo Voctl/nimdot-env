@@ -6,8 +6,19 @@
 
 ## install
 
+not on nimble yet. clone it manually:
+
 ```sh
-nimble install nimdot_env
+git clone https://github.com/Voctl/nimdot-env
+cd nimdot-env
+```
+
+then copy `src/nimdot_env` into your project or add the path to your `.nimble` file:
+
+```nim
+# yourproject.nimble
+requires "nim >= 1.0.0"
+# add nimdot_env source path manually
 ```
 
 ---
